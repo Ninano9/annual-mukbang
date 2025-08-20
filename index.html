@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서울 프리미엄 다이닝 가이드 | 2인 맞춤 맛집 추천</title>
+    <meta name="description" content="서울 최고의 스시·한우 오마카세와 울프강 스테이크하우스 완벽 가이드. 2인 커플을 위한 맞춤 메뉴 추천과 예약 정보까지!">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white;
+        }
+        .hero h1 { font-size: 4rem; font-weight: 300; margin-bottom: 1rem; }
+        .hero p { font-size: 1.5rem; margin-bottom: 2rem; opacity: 0.9; }
+        .hero-stats { display: flex; gap: 3rem; justify-content: center; margin-bottom: 3rem; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5rem; font-weight: bold; color: #ffeaa7; }
+        .stat-label { font-size: 1rem; opacity: 0.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 3rem; color: #2c3e50; margin-bottom: 1rem; font-weight: 300; }
+        .section-header p { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto; }
+        .restaurant-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .restaurant-card {
+            background: white; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1); transition: all 0.3s ease;
+        }
+        .restaurant-card:hover { transform: translateY(-10px); box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+        .restaurant-image {
+            width: 100%; height: 250px; background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; position: relative;
+        }
+        .restaurant-badge {
+            position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.9);
+            color: #667eea; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;
+        }
+        .restaurant-content { padding: 30px; }
+        .restaurant-name { font-size: 1.8rem; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
+        .restaurant-type { color: #667eea; font-size: 1rem; margin-bottom: 20px; }
+        .signature-dish {
+            background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .signature-dish h4 { color: #667eea; margin-bottom: 8px; font-size: 1.1rem; }
+        .dish-name { font-weight: bold; color: #2c3e50; margin-bottom: 5px; }
+        .dish-price { color: #e17055; font-weight: bold; font-size: 1.1rem; }
+        .location-info { display: flex; align-items: center; margin-bottom: 20px; color: #666; }
+        .location-info i { margin-right: 10px; color: #667eea; }
+        .view-details {
+            display: inline-block; width: 100%; padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2); color: white;
+            text-decoration: none; border-radius: 10px; text-align: center; font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .view-details:hover { background: linear-gradient(135deg, #764ba2, #667eea); transform: translateY(-2px); }
+        .map-section { background: #f8f9fa; padding: 80px 0; }
+        .map-container { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .map-wrapper { width: 100%; height: 500px; border-radius: 15px; overflow: hidden; margin-bottom: 30px; }
+        .map-locations { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .location-item { background: #f8f9fa; padding: 20px; border-radius: 15px; border-left: 4px solid #667eea; }
+        .location-name { font-weight: bold; color: #2c3e50; margin-bottom: 5px; }
+        .location-address { color: #666; font-size: 0.9rem; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 40px 0; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-stats { flex-direction: column; gap: 1rem; }
+            .restaurant-grid { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>서울 프리미엄 다이닝</h1>
+            <p>두 분을 위한 완벽한 맛의 여행 가이드</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">선별된 맛집</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">미슐랭 스타</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">2인 맞춤</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 레스토랑 섹션 -->
+    <section class="section" id="restaurants">
+        <div class="container">
+            <div class="section-header">
+                <h2>🍽️ 엄선된 맛집</h2>
+                <p>서울 최고의 프리미엄 다이닝 경험을 위해 엄선한 레스토랑들입니다</p>
+            </div>
+            
+            <div class="restaurant-grid">
+                <!-- 스시조 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        🍣
+                        <div class="restaurant-badge">미슐랭 1스타</div>
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-name">스시조</div>
+                        <div class="restaurant-type">정통 에도마에 스시 오마카세</div>
+                        <div class="signature-dish">
+                            <h4>🏆 시그니처 메뉴</h4>
+                            <div class="dish-name">디너 오마카세 코스</div>
+                            <div class="dish-price">300,000원 (2인)</div>
+                        </div>
+                        <div class="location-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            웨스틴조선호텔 20층, 중구 소공로 106
+                        </div>
+                        <a href="sushi-cho.html" class="view-details">
+                            <i class="fas fa-eye"></i> 상세 정보 보기
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 스시하나레 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        🍣
+                        <div class="restaurant-badge">미슐랭 셰프</div>
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-name">스시하나레</div>
+                        <div class="restaurant-type">박현준 셰프의 섬세한 스시</div>
+                        <div class="signature-dish">
+                            <h4>🏆 시그니처 메뉴</h4>
+                            <div class="dish-name">디너 오마카세</div>
+                            <div class="dish-price">250,000원 (1인)</div>
+                        </div>
+                        <div class="location-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            강남구 도산대로75길 5
+                        </div>
+                        <a href="sushi-hanare.html" class="view-details">
+                            <i class="fas fa-eye"></i> 상세 정보 보기
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 민규 청담점 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        🥩
+                        <div class="restaurant-badge">1++ 한우</div>
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-name">민규 청담점</div>
+                        <div class="restaurant-type">1++ 한우 파인다이닝</div>
+                        <div class="signature-dish">
+                            <h4>🏆 시그니처 메뉴</h4>
+                            <div class="dish-name">1++ 한우 오마카세</div>
+                            <div class="dish-price">200,000원 (1인)</div>
+                        </div>
+                        <div class="location-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            강남구 도산대로75길 21 1층
+                        </div>
+                        <a href="mingyu-cheongdam.html" class="view-details">
+                            <i class="fas fa-eye"></i> 상세 정보 보기
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 설로인 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        🥩
+                        <div class="restaurant-badge">정육점 직영</div>
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-name">설로인</div>
+                        <div class="restaurant-type">프리미엄 정육점 한우 오마카세</div>
+                        <div class="signature-dish">
+                            <h4>🏆 시그니처 메뉴</h4>
+                            <div class="dish-name">한우 오마카세</div>
+                            <div class="dish-price">120,000원 (1인)</div>
+                        </div>
+                        <div class="location-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            강남구 봉은사로73길 19
+                        </div>
+                        <a href="seolloin.html" class="view-details">
+                            <i class="fas fa-eye"></i> 상세 정보 보기
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 울프강 스테이크하우스 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        🥩
+                        <div class="restaurant-badge">뉴욕 본점</div>
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-name">울프강 스테이크하우스</div>
+                        <div class="restaurant-type">세계적인 프리미엄 스테이크하우스</div>
+                        <div class="signature-dish">
+                            <h4>🏆 시그니처 메뉴</h4>
+                            <div class="dish-name">Porterhouse for Two</div>
+                            <div class="dish-price">280,000원 (2인분)</div>
+                        </div>
+                        <div class="location-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            강남구 테헤란로 136 포스코센터 서관 2층
+                        </div>
+                        <a href="wolfgang-steakhouse.html" class="view-details">
+                            <i class="fas fa-eye"></i> 상세 정보 보기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 지도 섹션 -->
+    <section class="section map-section" id="map">
+        <div class="container">
+            <div class="section-header">
+                <h2>📍 위치 정보</h2>
+                <p>서울 시내 주요 위치에 자리잡은 프리미엄 레스토랑들</p>
+            </div>
+            <div class="map-container">
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50627.12303988642!2d126.9041!3d37.5219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2a9d041b733%3A0xfdf3ca15fc4c6c5!2z7ISc7Jq4IOqwle2CqOq1rA!5e0!3m2!1sko!2skr!4v1629123456789!5m2!1sko!2skr" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                <div class="map-locations">
+                    <div class="location-item">
+                        <div class="location-name">🍣 스시조</div>
+                        <div class="location-address">중구 소공로 106 웨스틴조선호텔 20층</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-name">🍣 스시하나레</div>
+                        <div class="location-address">강남구 도산대로75길 5</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-name">🥩 민규 청담점</div>
+                        <div class="location-address">강남구 도산대로75길 21 1층</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-name">🥩 설로인</div>
+                        <div class="location-address">강남구 봉은사로73길 19</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-name">🥩 울프강 스테이크하우스</div>
+                        <div class="location-address">강남구 테헤란로 136 포스코센터 서관 2층</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Seoul Premium Dining Guide. 두 분의 특별한 순간을 위해 제작되었습니다.</p>
+            <p>모든 가격과 정보는 2024년 기준이며, 방문 전 확인하시기 바랍니다.</p>
+        </div>
+    </footer>
+</body>
+</html>

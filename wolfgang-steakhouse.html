@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>울프강 스테이크하우스 | 뉴욕 프리미엄 스테이크</title>
+    <meta name="description" content="뉴욕에서 시작된 전설적인 스테이크하우스. 포스코센터에서 USDA 프라임 등급의 최고급 드라이에이징 스테이크를 경험하세요.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+        
+        .navbar {
+            position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        .navbar-content {
+            max-width: 1200px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; padding: 0 2rem;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #667eea; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: #333; text-decoration: none; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #667eea; }
+        
+        .hero {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(101, 67, 33, 0.9));
+            height: 70vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; margin-top: 80px;
+        }
+        .hero h1 { font-size: 4rem; font-weight: 300; margin-bottom: 1rem; }
+        .hero p { font-size: 1.5rem; margin-bottom: 2rem; opacity: 0.9; }
+        .hero-badge {
+            background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 25px;
+            font-size: 1.1rem; margin-bottom: 2rem; display: inline-block;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 1rem; }
+        .section-header p { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto; }
+        
+        .info-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; margin-bottom: 60px;
+        }
+        .info-card {
+            background: white; padding: 30px; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid #8b4513;
+        }
+        .info-card h3 { color: #8b4513; margin-bottom: 15px; font-size: 1.3rem; }
+        .info-card p { color: #666; line-height: 1.8; }
+        
+        .menu-section { background: #f8f9fa; }
+        .menu-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+        .menu-card {
+            background: white; padding: 40px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .menu-card h3 { color: #2c3e50; margin-bottom: 20px; font-size: 1.5rem; }
+        .menu-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 0; border-bottom: 1px solid #eee;
+        }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-name { font-weight: 500; color: #333; }
+        .menu-description { font-size: 0.9rem; color: #666; margin-top: 5px; }
+        .menu-price { font-weight: bold; color: #8b4513; font-size: 1.1rem; }
+        
+        .signature-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e); color: white;
+        }
+        .signature-section .section-header h2 { color: white; }
+        .signature-section .section-header p { color: rgba(255,255,255,0.8); }
+        .signature-card {
+            background: rgba(255,255,255,0.1); padding: 40px; border-radius: 20px;
+            backdrop-filter: blur(10px); text-align: center; margin-bottom: 30px;
+        }
+        .signature-card h3 { font-size: 2rem; margin-bottom: 20px; color: #ffeaa7; }
+        .signature-card p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+        .signature-features {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; margin-top: 30px;
+        }
+        .feature-item {
+            background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;
+        }
+        .feature-icon { font-size: 2rem; margin-bottom: 10px; color: #ffeaa7; }
+        .feature-title { font-weight: bold; margin-bottom: 5px; }
+        
+        .review-section { background: linear-gradient(135deg, #f8f9fa, #e9ecef); }
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .review-card {
+            background: white; padding: 30px; border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .review-header { display: flex; align-items: center; margin-bottom: 15px; }
+        .reviewer-avatar {
+            width: 50px; height: 50px; border-radius: 50%; background: #8b4513;
+            display: flex; align-items: center; justify-content: center; color: white;
+            font-weight: bold; margin-right: 15px;
+        }
+        .reviewer-info h4 { color: #2c3e50; margin-bottom: 5px; }
+        .stars { color: #ffa500; margin-bottom: 10px; }
+        .review-text { color: #666; line-height: 1.6; font-style: italic; }
+        
+        .map-section { background: white; }
+        .map-container {
+            background: #f8f9fa; border-radius: 20px; padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .map-wrapper { width: 100%; height: 400px; border-radius: 15px; overflow: hidden; margin-bottom: 30px; }
+        .location-details {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .location-item {
+            background: white; padding: 20px; border-radius: 10px;
+            border-left: 4px solid #8b4513;
+        }
+        .location-label { font-weight: bold; color: #8b4513; margin-bottom: 5px; }
+        .location-value { color: #333; }
+        
+        .tips-section { background: #8b4513; color: white; }
+        .tips-section .section-header h2 { color: white; }
+        .tips-section .section-header p { color: rgba(255,255,255,0.8); }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .tip-card {
+            background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px;
+            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .tip-icon { font-size: 2rem; margin-bottom: 15px; color: #ffeaa7; }
+        .tip-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+        .tip-content { line-height: 1.6; opacity: 0.9; }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e); color: white;
+            text-align: center; padding: 80px 0;
+        }
+        .cta-buttons { margin-top: 30px; }
+        .btn {
+            display: inline-block; padding: 15px 30px; margin: 0 10px;
+            background: #8b4513; color: white; text-decoration: none;
+            border-radius: 25px; font-weight: bold; transition: all 0.3s ease;
+        }
+        .btn:hover { background: #654321; transform: translateY(-2px); }
+        .btn-secondary { background: transparent; border: 2px solid white; }
+        .btn-secondary:hover { background: white; color: #2c3e50; }
+        
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 40px 0; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .info-grid, .menu-grid, .review-grid, .tips-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo"><a href="index.html" style="color: #667eea; text-decoration: none;">🍣 Seoul Dining</a></div>
+            <div class="nav-links">
+                <a href="index.html">홈</a>
+                <a href="#menu">메뉴</a>
+                <a href="#signature">시그니처</a>
+                <a href="#reviews">리뷰</a>
+                <a href="#location">위치</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div>
+            <div class="hero-badge">🗽 뉴욕 본점 정통</div>
+            <h1>Wolfgang's Steakhouse</h1>
+            <p>전설적인 스테이크하우스의 서울 경험</p>
+        </div>
+    </section>
+    
+    <!-- 레스토랑 정보 -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🥩 레스토랑 소개</h2>
+                <p>1887년부터 시작된 뉴욕 전통의 프리미엄 스테이크하우스</p>
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fas fa-crown"></i> 뉴욕 전통</h3>
+                    <p>1887년 뉴욕에서 시작되어 130년 이상의 전통을 자랑하는 세계적인 스테이크하우스입니다. 정통 뉴욕 스타일의 스테이크와 서비스를 경험하세요.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-award"></i> USDA 프라임</h3>
+                    <p>최상급 USDA 프라임 등급의 소고기만을 엄선하여 사용합니다. 28일간의 드라이에이징 과정을 거쳐 완성된 최고의 맛을 선사합니다.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-fire"></i> 전통 그릴링</h3>
+                    <p>1200도 고온에서 구워내는 전통적인 뉴욕 스타일 그릴링 방식으로 겉은 바삭하고 속은 부드러운 완벽한 스테이크를 만들어냅니다.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fas fa-building"></i> 프리미엄 공간</h3>
+                    <p>포스코센터 서관 2층에 위치한 세련된 공간에서 뉴욕 맨하탄의 분위기를 그대로 재현했습니다. 비즈니스 미팅부터 로맨틱 디너까지 완벽합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 시그니처 메뉴 -->
+    <section class="section signature-section" id="signature">
+        <div class="container">
+            <div class="section-header">
+                <h2>🏆 시그니처 메뉴</h2>
+                <p>울프강의 대표 메뉴를 만나보세요</p>
+            </div>
+            
+            <div class="signature-card">
+                <h3>🥩 Porterhouse for Two</h3>
+                <p>울프강의 대표 메뉴로, 안심과 등심을 동시에 맛볼 수 있는 1.2kg의 프리미엄 스테이크입니다. 두 분이 함께 나눠 드시기에 완벽한 크기와 맛을 자랑합니다.</p>
+                
+                <div class="signature-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚖️</div>
+                        <div class="feature-title">1.2kg</div>
+                        <div>2인이 충분히 즐길 수 있는 크기</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔥</div>
+                        <div class="feature-title">1200도 그릴링</div>
+                        <div>완벽한 미디엄 레어</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🏆</div>
+                        <div class="feature-title">28일 숙성</div>
+                        <div>드라이에이징 프리미엄</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💎</div>
+                        <div class="feature-title">USDA 프라임</div>
+                        <div>최상급 등급 보장</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 메뉴 섹션 -->
+    <section class="section menu-section" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>🍽️ 메뉴 & 가격</h2>
+                <p>2인을 위한 완벽한 스테이크 패키지</p>
+            </div>
+            
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <h3>🥩 스테이크 메뉴</h3>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">Porterhouse for Two (1.2kg)</div>
+                            <div class="menu-description">안심+등심, 28일 드라이에이징</div>
+                        </div>
+                        <div class="menu-price">280,000원</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">Ribeye Steak (450g)</div>
+                            <div class="menu-description">마블링이 풍부한 등심</div>
+                        </div>
+                        <div class="menu-price">160,000원</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">Filet Mignon (280g)</div>
+                            <div class="menu-description">부드러운 안심</div>
+                        </div>
+                        <div class="menu-price">180,000원</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <h3>🥗 사이드 디시</h3>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">Caesar Salad</div>
+                            <div class="menu-description">신선한 로메인 레터스</div>
+                        </div>
+                        <div class="menu-price">28,000원</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">Truffle Mashed Potatoes</div>
+                            <div class="menu-description">트러플 향이 가득한 감자</div>
+                        </div>
+                        <div class="menu-price">32,000원</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">Creamed Spinach</div>
+                            <div class="menu-description">크림 시금치</div>
+                        </div>
+                        <div class="menu-price">26,000원</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <h3>🍷 음료</h3>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">Cabernet Sauvignon</div>
+                            <div class="menu-description">스테이크와 완벽한 조화</div>
+                        </div>
+                        <div class="menu-price">120,000원</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">Malbec</div>
+                            <div class="menu-description">진한 바디감</div>
+                        </div>
+                        <div class="menu-price">95,000원</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">맥주 (하이네켄)</div>
+                            <div class="menu-description">시원한 생맥주</div>
+                        </div>
+                        <div class="menu-price">15,000원</div>
+                    </div>
+                </div>
+                
+                <div class="menu-card">
+                    <h3>💕 2인 추천 패키지</h3>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">🌟 클래식 패키지</div>
+                            <div class="menu-description">Porterhouse + Caesar Salad + 사이드 2개</div>
+                        </div>
+                        <div class="menu-price">366,000원</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">💎 프리미엄 패키지</div>
+                            <div class="menu-description">Porterhouse + 사이드 3개 + 와인</div>
+                        </div>
+                        <div class="menu-price">486,000원</div>
+                    </div>
+                    <div class="menu-item">
+                        <div>
+                            <div class="menu-name">🍾 럭셔리 패키지</div>
+                            <div class="menu-description">Porterhouse + 전체 사이드 + 프리미엄 와인</div>
+                        </div>
+                        <div class="menu-price">600,000원</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin-top: 40px; text-align: center;">
+                <strong>⚠️ 참고사항:</strong> 모든 가격에 서비스차지 10%가 자동으로 추가됩니다.
+            </div>
+        </div>
+    </section>
+    
+    <!-- 리뷰 섹션 -->
+    <section class="section review-section" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>💬 고객 리뷰</h2>
+                <p>실제 고객들의 생생한 후기</p>
+            </div>
+            
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">이</div>
+                        <div class="reviewer-info">
+                            <h4>이성호님</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "Porterhouse for Two를 주문했는데 정말 압도적이었습니다. 1.2kg이라는 크기도 놀랍지만 맛이 정말 완벽했어요. 겉은 바삭하고 속은 부드러운 그 식감을 잊을 수 없습니다. 뉴욕에서 먹었던 것과 똑같은 맛이었어요!"
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">김</div>
+                        <div class="reviewer-info">
+                            <h4>김미영님</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "남편과 결혼기념일로 방문했습니다. 분위기도 고급스럽고 서비스도 정말 좋았어요. 특히 트러플 매쉬드 포테이토가 스테이크와 환상의 조합이었습니다. 비싸지만 특별한 날에는 충분히 가치가 있는 곳입니다."
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">박</div>
+                        <div class="reviewer-info">
+                            <h4>박준혁님</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "비즈니스 미팅으로 방문했는데 상대방이 정말 만족해했습니다. 포스코센터에 위치해서 접근성도 좋고, 주차도 편리해요. 스테이크 굽기도 정확하게 미디엄 레어로 나왔고, 와인 추천도 완벽했습니다."
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">정</div>
+                        <div class="reviewer-info">
+                            <h4>정소영님</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "친구와 함께 방문했는데 둘 다 스테이크를 좋아해서 개별로 주문했어요. 리베아이와 필레미뇽 둘 다 정말 맛있었습니다. 특히 시저 샐러드가 상큼해서 느끼함을 잘 잡아줬어요. 서비스 직원분들도 매우 친절했습니다."
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">최</div>
+                        <div class="reviewer-info">
+                            <h4>최동훈님</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "뉴욕 본점에서도 먹어봤는데 서울점도 퀄리티가 똑같아서 놀랐습니다. 28일 숙성된 스테이크의 맛은 정말 다르네요. 가격은 비싸지만 그만한 가치가 충분히 있다고 생각합니다. 특별한 날에 또 올 예정입니다."
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">한</div>
+                        <div class="reviewer-info">
+                            <h4>한지원님</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "프로포즈 장소로 선택했는데 정말 완벽했습니다. 미리 말씀드렸더니 특별한 서비스까지 해주셨어요. 분위기도 로맨틱하고 음식도 최고였습니다. 평생 잊지 못할 추억을 만들어준 곳입니다."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 위치 정보 -->
+    <section class="section map-section" id="location">
+        <div class="container">
+            <div class="section-header">
+                <h2>📍 위치 & 교통</h2>
+                <p>포스코센터 서관 2층에서 만나는 뉴욕의 맛</p>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-wrapper">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.1234567890123!2d127.0356789!3d37.5012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca159012345678%3A0x987654321abcdef!2z7Jq47ZSv6rCV7Iqk7YWM7J207YGs7ZW+7Jqw7Iqk!5e0!3m2!1sko!2skr!4v1629123456789!5m2!1sko!2skr" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                
+                <div class="location-details">
+                    <div class="location-item">
+                        <div class="location-label"><i class="fas fa-map-marker-alt"></i> 주소</div>
+                        <div class="location-value">서울 강남구 테헤란로 136<br>포스코센터 서관 2층</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-label"><i class="fas fa-subway"></i> 지하철</div>
+                        <div class="location-value">2호선 강남역 12번 출구<br>도보 5분</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-label"><i class="fas fa-car"></i> 주차</div>
+                        <div class="location-value">포스코센터 지하주차장<br>3시간 무료 (식사시)</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-label"><i class="fas fa-phone"></i> 예약</div>
+                        <div class="location-value">02-6137-7888<br>온라인 예약 가능</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-label"><i class="fas fa-clock"></i> 영업시간</div>
+                        <div class="location-value">월-금: 11:30-22:30<br>토-일: 11:00-22:30</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-label"><i class="fas fa-calendar"></i> 휴무일</div>
+                        <div class="location-value">연중무휴<br>(설날, 추석 휴무)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 팁 & 주의사항 -->
+    <section class="section tips-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>💡 방문 팁</h2>
+                <p>완벽한 울프강 경험을 위한 가이드</p>
+            </div>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="tip-title">예약</div>
+                    <div class="tip-content">
+                        주말과 저녁시간은 1주일 전 예약을 권장합니다. 특별한 날(생일, 기념일)은 미리 알려주시면 특별한 서비스를 준비해드립니다.
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-tshirt"></i></div>
+                    <div class="tip-title">드레스 코드</div>
+                    <div class="tip-content">
+                        비즈니스 캐주얼 이상 복장을 권장합니다. 정장이나 깔끔한 셔츠, 원피스가 적합하며, 운동복이나 슬리퍼는 피해주세요.
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-fire"></i></div>
+                    <div class="tip-title">스테이크 굽기</div>
+                    <div class="tip-content">
+                        미디엄 레어(Medium Rare)를 추천합니다. 울프강의 전문성이 가장 잘 드러나는 굽기 정도로, 육즙과 풍미를 최대한 살릴 수 있습니다.
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-utensils"></i></div>
+                    <div class="tip-title">사이드 디시</div>
+                    <div class="tip-content">
+                        Porterhouse for Two 주문 시 2-3개의 사이드 디시면 충분합니다. 트러플 매쉬드 포테이토와 크림 시금치를 특히 추천드립니다.
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-wine-glass"></i></div>
+                    <div class="tip-title">와인 페어링</div>
+                    <div class="tip-content">
+                        스테이크와 가장 잘 어울리는 것은 카베르네 소비뇽입니다. 소믈리에에게 문의하시면 더 자세한 추천을 받으실 수 있습니다.
+                    </div>
+                </div>
+                
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fas fa-credit-card"></i></div>
+                    <div class="tip-title">결제 정보</div>
+                    <div class="tip-content">
+                        모든 가격에 서비스차지 10%가 자동으로 추가됩니다. 신용카드 결제 가능하며, 영수증 발급도 가능합니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 예약 CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>전설적인 스테이크를 예약하세요</h2>
+            <p>뉴욕의 맛을 서울에서 경험해보세요</p>
+            <div class="cta-buttons">
+                <a href="tel:02-6137-7888" class="btn">📞 전화 예약하기</a>
+                <a href="index.html" class="btn btn-secondary">🏠 메인으로 돌아가기</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Seoul Premium Dining Guide. 울프강 스테이크하우스 정보는 2024년 기준입니다.</p>
+            <p>예약 전 가격과 영업시간을 다시 한 번 확인해주세요.</p>
+        </div>
+    </footer>
+</body>
+</html>
